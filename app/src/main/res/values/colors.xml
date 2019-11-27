@@ -3,5 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="blue_light">#51C0F3</color>
+    <color name="Do">#FF034B</color>
+    <color name="Vang">#E7B50F</color>
+    <color name="XANH">#0221EC</color>
 </resources>
