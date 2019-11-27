@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private int positionEmpty;
     CountDownTimer w;
     MediaPlayer mediaPlayer;
-    private ListAdapter valuesAdapter;
+    private ListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 randomList();
+                adapter.setListChange(list);
             }
         });
 
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         tablesize = mIntent.getIntExtra("TABLE_SIZE", 0);
 
         randomList();
-        valuesAdapter = new ListAdapter(list, tablesize, new ListAdapter.ListAdapterListener() {
+        adapter = new ListAdapter(list, tablesize, new ListAdapter.ListAdapterListener() {
             @Override
             public void onItemClick(int positon) {
                 handleWhenClickItem(positon);
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         rcvTable.setHasFixedSize(true);
             GridLayoutManager gridLayoutManager = new GridLayoutManager(this, tablesize);
         rcvTable.setLayoutManager(gridLayoutManager);
-        rcvTable.setAdapter(valuesAdapter);
+        rcvTable.setAdapter(adapter);
     }
 
     private void randomList() {
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             list.set(positionEmpty,list.get(potision));
             list.set(potision,0);
             positionEmpty=potision;
-            valuesAdapter.setListChange(list);
+            adapter.setListChange(list);
         }else{
             Toast.makeText(this, "Move Not Allowed", Toast.LENGTH_SHORT).show();
         }
