@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -28,6 +29,8 @@ public class GameActivity extends AppCompatActivity {
     private List<Integer> list = new ArrayList<>();
     private int positionEmpty;
     CountDownTimer w;
+    private TextView moveCounter;
+    private TextView feedbackText;
     MediaPlayer mediaPlayer;
     private ListAdapter adapter;
     ImageView load;
@@ -36,6 +39,9 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        moveCounter = (TextView) findViewById(R.id.MoveCounter);
+        feedbackText = (TextView) findViewById(R.id.FeedbackText);
+        TextView level = (TextView)findViewById(R.id.level);
         Button mix = (Button)findViewById(R.id.start);
         Button back1 = (Button)findViewById(R.id.bacl);
         load = (ImageView)findViewById(R.id.loa);
@@ -74,7 +80,7 @@ public class GameActivity extends AppCompatActivity {
 
         // Thời gian
         final TextView tv1 = (TextView) findViewById(R.id.tv);
-        w = new CountDownTimer(600000, 1000) {
+        w = new CountDownTimer(6000, 1000) {
             public void onTick(long mil) {
                 tv1.setText("Seconds remaining: " + mil / 1000);
             }
@@ -85,6 +91,7 @@ public class GameActivity extends AppCompatActivity {
 
             }
         }.start();
+
 
         mix.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +129,9 @@ public class GameActivity extends AppCompatActivity {
         Collections.shuffle(list);
         list.add(0);
         positionEmpty= list.indexOf(0);
+        moveCounter.setText("0");
+        feedbackText.setText("No feedback yet!");
+        feedbackText.setTextColor(Color.BLUE);
 
     }
 
@@ -135,8 +145,15 @@ public class GameActivity extends AppCompatActivity {
             list.set(potision,0);
             positionEmpty=potision;
             adapter.setListChange(list);
+            moveCounter.setText(Integer.toString(Integer.parseInt((String) moveCounter.getText())+1));
+            moveCounter.setTextColor(Color.BLACK);
+            feedbackText.setText("Move OK");
+            feedbackText.setTextColor(Color.GREEN);
+
         }else{
-            Toast.makeText(this, "Move Not Allowed", Toast.LENGTH_SHORT).show();
+
+            feedbackText.setText("Move Not Allowed");
+            feedbackText.setTextColor(Color.RED);
         }
     }
 
@@ -152,6 +169,7 @@ public class GameActivity extends AppCompatActivity {
     }
     public void Ketthuc() {
         AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this, android.R.style.Theme_DeviceDefault_Dialog);
+        builder.setCancelable(false);
         builder.setTitle("Bạn đã thua cuộc");
         builder.setMessage("Hãy lựa chọn bên dưới để xác nhân");
         builder.setIcon(android.R.drawable.ic_notification_overlay);
@@ -159,9 +177,10 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 onBackPressed();
+                mediaPlayer.stop();
+
             }
         });
-        dialog.setCanceledOnTouchOutside(false);
         builder.show();
     }
 }

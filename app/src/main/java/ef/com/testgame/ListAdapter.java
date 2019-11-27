@@ -6,7 +6,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
@@ -61,13 +65,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         int value = list.get(i);
             if(value==0){
                 holder.tvValue.setText("");
-                holder.tvValue.setBackgroundColor(Color.TRANSPARENT);
-
+                holder.tvValue.setBackgroundColor(Color.YELLOW);
             }else{
                 holder.tvValue.setText(String.valueOf(value));
                 holder.tvValue.setBackgroundColor(Color.parseColor("#51C0F3"));
 
             }
+
 
 
     }

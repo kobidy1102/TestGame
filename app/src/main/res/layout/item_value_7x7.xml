@@ -4,7 +4,7 @@
     android:layout_width="42.86dp"
     android:layout_height="42.86dp"
     android:layout_margin="2dp"
-    android:background="@android:color/holo_blue_light"
+    android:background="@drawable/backgroud"
     android:gravity="center"
     android:textStyle="bold"
     android:textSize="15dp" />

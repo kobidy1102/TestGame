@@ -14,6 +14,7 @@
             android:background="@drawable/imgback" />
 
         <TextView
+            android:id="@+id/level"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -44,22 +45,71 @@
             android:src="@drawable/volume" />
     </LinearLayout>
 
-<RelativeLayout android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/activity_main_rcv_table"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_table"
-        android:padding="2dp"
-        android:layout_centerInParent="true">
-    </androidx.recyclerview.widget.RecyclerView>
-</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/Game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/activity_main_rcv_table"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bg_table"
+            android:padding="2dp"></androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/MoveText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:textColor="#161515"
+            android:textStyle="bold"
+            android:layout_below="@+id/activity_main_rcv_table"
+            android:text="@string/moves_title"
+            android:textSize="28px"></TextView>
+
+        <TextView
+            android:id="@+id/FeedbackTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/MoveText"
+            android:textColor="#161515"
+            android:textStyle="bold"
+            android:text="@string/feedback_title"
+            android:textSize="28px"></TextView>
+
+        <TextView
+            android:id="@+id/MoveCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_main_rcv_table"
+            android:layout_alignBaseline="@+id/MoveText"
+            android:layout_marginLeft="5px"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/MoveText"
+            android:text="0"
+            android:textSize="28px"></TextView>
+
+
+        <TextView
+            android:id="@+id/FeedbackText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/FeedbackTitleText"
+            android:layout_alignBaseline="@+id/FeedbackTitleText"
+            android:layout_alignRight="@+id/activity_main_rcv_table"
+            android:text="No feedback yet!"
+            android:textSize="28px"></TextView>
+
+    </RelativeLayout>
+
     <Button
         android:id="@+id/start"
         android:layout_width="200dp"
         android:layout_height="70dp"
+        android:background="@drawable/backgroud_number"
         android:layout_gravity="center"
+        android:textSize="18dp"
         android:text="Mix" />
 </LinearLayout>
