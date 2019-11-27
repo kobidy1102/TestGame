@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView rcv8x8;
+    private RecyclerView rcvTable;
     private static final int TABLE_SIZE = 3;
     private List<Integer> list = new ArrayList<>();
     private int positionEmpty;
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        rcv8x8= findViewById(R.id.activity_main_rcv_8x8);
+        rcvTable= findViewById(R.id.activity_main_rcv_table);
         randomList();
 
         valuesAdapter = new ListAdapter(list, new ListAdapter.ListAdapterListener() {
@@ -34,10 +34,10 @@ public class MainActivity extends AppCompatActivity {
                 checkEndGame();
             }
         });
-        rcv8x8.setHasFixedSize(true);
+        rcvTable.setHasFixedSize(true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, TABLE_SIZE);
-        rcv8x8.setLayoutManager(gridLayoutManager);
-        rcv8x8.setAdapter(valuesAdapter);
+        rcvTable.setLayoutManager(gridLayoutManager);
+        rcvTable.setAdapter(valuesAdapter);
     }
 
     private void randomList() {
