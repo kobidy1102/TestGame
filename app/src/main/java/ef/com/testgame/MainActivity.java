@@ -16,7 +16,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView rcvTable;
+
     private int tablesize;
+
     private List<Integer> list = new ArrayList<>();
     private int positionEmpty;
     private ListAdapter valuesAdapter;
@@ -45,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void randomList() {
+
         int size= tablesize * tablesize -1;
+
         for (int i = 0; i < size; i++) {
             list.add(i+1);
         }
