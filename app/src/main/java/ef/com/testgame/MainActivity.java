@@ -15,7 +15,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView rcvTable;
-    private static final int TABLE_SIZE = 3;
+    private static final int TABLE_SIZE = 5;
     private List<Integer> list = new ArrayList<>();
     private int positionEmpty;
     private ListAdapter valuesAdapter;
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         rcvTable= findViewById(R.id.activity_main_rcv_table);
         randomList();
 
-        valuesAdapter = new ListAdapter(list, new ListAdapter.ListAdapterListener() {
+        valuesAdapter = new ListAdapter(list, TABLE_SIZE, new ListAdapter.ListAdapterListener() {
             @Override
             public void onItemClick(int positon) {
                 handleWhenClickItem(positon);
