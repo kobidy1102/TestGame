@@ -63,14 +63,49 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
 
         int value = list.get(i);
-            if(value==0){
-                holder.tvValue.setText("");
-                holder.tvValue.setBackgroundColor(Color.YELLOW);
-            }else{
-                holder.tvValue.setText(String.valueOf(value));
-                holder.tvValue.setBackgroundColor(Color.parseColor("#51C0F3"));
-
+        if(value==0){
+            holder.tvValue.setText("");
+            holder.tvValue.setBackgroundColor(Color.TRANSPARENT);
+        }else{
+            holder.tvValue.setText(String.valueOf(value));
+            switch (sizeTable){
+                case 3:
+                    holder.tvValue.setBackgroundResource(R.drawable.backgroud);
+                    break;
+                case 4:
+                    holder.tvValue.setBackgroundResource(R.drawable.backgroud1);
+                    break;
+                case 5:
+                    holder.tvValue.setBackgroundResource(R.drawable.backgroud2);
+                    break;
+                case 6:
+                    holder.tvValue.setBackgroundResource(R.drawable.backgroud4);
+                    break;
+                case 7:
+                    holder.tvValue.setBackgroundResource(R.drawable.backgroud5);
+                    break;
+                case 8:
+                    holder.tvValue.setBackgroundResource(R.drawable.backgroud6);
+                    break;
             }
+
+
+        }
+//                if(value==0){
+//                    holder.tvValue.setText("");
+//                    switch (sizeTable) {
+//                        case 3:
+//                            holder.tvValue.setBackgroundColor(Color.TRANSPARENT);
+//                            holder.tvValue.res.getDrawable(R.drawable.xxxx);
+//                            break;
+//
+//                }else {
+//                    holder.tvValue.setText(String.valueOf(value));
+//                    holder.tvValue.setBackgroundColor(Color.parseColor("#51C0F3"));
+//
+//                }
+//
+//            }
 
 
 
