@@ -187,7 +187,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public int getlevel() {
-        level.setText(String.valueOf(level));
+        level.setText(String.valueOf(tablesize));
         switch (tablesize) {
             case 3:
                 return 1;
