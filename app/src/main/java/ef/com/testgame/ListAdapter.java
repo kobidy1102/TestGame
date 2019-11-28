@@ -76,28 +76,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 holder.tvValue.setBackgroundColor(Color.TRANSPARENT);
             }else{
                 holder.tvValue.setText(String.valueOf(value));
-               // holder.tvValue.setBackgroundColor(context.getResources().getColor(R.color.blue_light));
-
-                switch (sizeTable){
-                    case 3:
-                        holder.tvValue.setBackground(context.getResources().getDrawable(R.drawable.backgroud_number1));
-                        break;
-                    case 4:
-                        holder.tvValue.setBackgroundColor(context.getResources().getColor(R.color.Do));
-                        break;
-                    case 5:
-                        holder.tvValue.setBackgroundColor(context.getResources().getColor(R.color.blue_light));
-                        break;
-                    case 6:
-                        holder.tvValue.setBackground(context.getResources().getDrawable(R.drawable.backgroud_number));
-                        break;
-                    case 7:
-                        holder.tvValue.setBackground(context.getResources().getDrawable(R.drawable.backgroud_number2));
-                        break;
-                    case 8:
-                        holder.tvValue.setBackgroundColor(context.getResources().getColor(R.color.Do));
-                        break;
-                }
+                holder.tvValue.setBackground(AppUtil.getBackground(context, sizeTable));
 
             }
 

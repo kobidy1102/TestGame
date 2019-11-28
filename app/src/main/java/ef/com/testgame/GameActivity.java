@@ -218,6 +218,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void startAnimation(final int positionClick, final int derectionMove) {
         tvFakeAnimation.setText(String.valueOf(list.get(positionClick)));
+        tvFakeAnimation.setBackground(AppUtil.getBackground(this, tablesize));
         int locationX= positionClick% tablesize;
         int locationY= positionClick/tablesize;
         tvFakeAnimation.setVisibility(View.VISIBLE);
