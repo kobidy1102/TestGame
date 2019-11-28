@@ -1,11 +1,17 @@
 package ef.com.testgame;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -21,12 +27,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private List<Integer> list;
     private ListAdapterListener listener;
     private int sizeTable;
+    private Context context;
 
-    ListAdapter(List<Integer> list, int sizeTable,
+    ListAdapter(Context context, List<Integer> list, int sizeTable,
                 ListAdapterListener listener) {
         this.list = list;
         this.listener = listener;
         this.sizeTable=sizeTable;
+        this.context=context;
     }
 
     @NonNull
@@ -65,10 +73,31 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         int value = list.get(i);
             if(value==0){
                 holder.tvValue.setText("");
-                holder.tvValue.setBackgroundColor(Color.YELLOW);
+                holder.tvValue.setBackgroundColor(Color.TRANSPARENT);
             }else{
                 holder.tvValue.setText(String.valueOf(value));
-                holder.tvValue.setBackgroundColor(Color.parseColor("#51C0F3"));
+               // holder.tvValue.setBackgroundColor(context.getResources().getColor(R.color.blue_light));
+
+                switch (sizeTable){
+                    case 3:
+                        holder.tvValue.setBackground(context.getResources().getDrawable(R.drawable.backgroud_number1));
+                        break;
+                    case 4:
+                        holder.tvValue.setBackgroundColor(context.getResources().getColor(R.color.Do));
+                        break;
+                    case 5:
+                        holder.tvValue.setBackgroundColor(context.getResources().getColor(R.color.blue_light));
+                        break;
+                    case 6:
+                        holder.tvValue.setBackground(context.getResources().getDrawable(R.drawable.backgroud_number));
+                        break;
+                    case 7:
+                        holder.tvValue.setBackground(context.getResources().getDrawable(R.drawable.backgroud_number2));
+                        break;
+                    case 8:
+                        holder.tvValue.setBackgroundColor(context.getResources().getColor(R.color.Do));
+                        break;
+                }
 
             }
 
@@ -89,12 +118,16 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             super(itemView);
             tvValue = itemView.findViewById(R.id.item_value_tv_value);
 
-            tvValue.setOnClickListener(new View.OnClickListener() {
+
+            tvValue.setOnTouchListener(new View.OnTouchListener() {
                 @Override
-                public void onClick(View view) {
+                public boolean onTouch(View view, MotionEvent motionEvent) {
                     if(listener!=null){
-                        listener.onItemClick(getAdapterPosition());
+                      listener.onItemClick(tvValue,getAdapterPosition());
+
+
                     }
+                    return false;
                 }
             });
 
@@ -105,7 +138,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     public interface ListAdapterListener{
-        void onItemClick(int positon);
+        void onItemClick(TextView view, int positon);
     }
 
     public void setListChange(List<Integer> newList){
@@ -113,4 +146,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         notifyDataSetChanged();
 
     }
+
+
 }
