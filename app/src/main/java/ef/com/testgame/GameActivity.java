@@ -181,6 +181,8 @@ public class GameActivity extends AppCompatActivity {
         moveCounter.setText(Integer.toString(Integer.parseInt((String) moveCounter.getText())+1));
         moveCounter.setTextColor(Color.BLACK);
         feedbackText.setText("Move OK");
+        final MediaPlayer mediaPlayer1= MediaPlayer.create(GameActivity.this,R.raw.dichuyen);
+        mediaPlayer1.start();
         feedbackText.setTextColor(Color.GREEN);
     }
 
@@ -190,6 +192,9 @@ public class GameActivity extends AppCompatActivity {
             if(list.get(i)!=i+1){
                 break;
             }else if(i==size-2){
+                Intent myIntent = new Intent(this, GameActivity.class);
+                myIntent.putExtra("TABLE_SIZE",tablesize+1);
+                startActivity(myIntent);
                 Toast.makeText(this, "End Game", Toast.LENGTH_SHORT).show();
             }
         }
