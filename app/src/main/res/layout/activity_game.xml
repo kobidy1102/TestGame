@@ -10,9 +10,9 @@
 
         <Button
             android:id="@+id/bacl"
-            android:layout_width="100dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/imgback" />
+            android:background="@drawable/backopenvideo" />
 
         <TextView
             android:id="@+id/level"
@@ -34,8 +34,9 @@
 
         <TextView
             android:id="@+id/tv"
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_height="30dp"
+            android:textSize="17dp"
             android:textColor="#EC0202" />
 
         <ImageView
@@ -82,7 +83,7 @@
             android:textStyle="bold"
             android:layout_below="@+id/activity_main_rcv_table"
             android:text="@string/moves_title"
-            android:textSize="28px"></TextView>
+            android:textSize="20dp"></TextView>
 
         <TextView
             android:id="@+id/FeedbackTitleText"
@@ -92,7 +93,7 @@
             android:textColor="#161515"
             android:textStyle="bold"
             android:text="@string/feedback_title"
-            android:textSize="28px"></TextView>
+            android:textSize="20dp"></TextView>
 
         <TextView
             android:id="@+id/MoveCounter"
@@ -104,7 +105,7 @@
             android:textStyle="bold"
             android:layout_toRightOf="@+id/MoveText"
             android:text="0"
-            android:textSize="28px"></TextView>
+            android:textSize="20dp"></TextView>
 
 
         <TextView
@@ -115,7 +116,7 @@
             android:layout_alignBaseline="@+id/FeedbackTitleText"
             android:layout_alignRight="@+id/activity_main_rcv_table"
             android:text="No feedback yet!"
-            android:textSize="28px"></TextView>
+            android:textSize="20dp"></TextView>
 
     </RelativeLayout>
 

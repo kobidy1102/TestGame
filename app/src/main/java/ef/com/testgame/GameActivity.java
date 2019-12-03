@@ -39,7 +39,7 @@ public class GameActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     private ListAdapter adapter;
     ImageView load;
-    TextView tvFakeAnimation;
+    TextView tvFakeAnimation, level;
     LinearLayout llRoot;
 
     private  static int MOVE_LEFT=1;
@@ -53,9 +53,10 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         moveCounter = (TextView) findViewById(R.id.MoveCounter);
         feedbackText = (TextView) findViewById(R.id.FeedbackText);
-        TextView level = (TextView)findViewById(R.id.level);
         Button mix = (Button)findViewById(R.id.start);
         Button back1 = (Button)findViewById(R.id.bacl);
+        level = (TextView)findViewById(R.id.level);
+        level.setText("Level " + getLevel(tablesize));
         load = (ImageView)findViewById(R.id.loa);
         tvFakeAnimation= findViewById(R.id.game_activity_tv_fake_animation);
         llRoot= findViewById(R.id.game_activity_ll_root);
@@ -69,7 +70,7 @@ public class GameActivity extends AppCompatActivity {
         });
 
         //loa
-        mediaPlayer= MediaPlayer.create(GameActivity.this,R.raw.nhacnen);
+        mediaPlayer= MediaPlayer.create(GameActivity.this,R.raw.nhacnen1);
         if(mediaPlayer.isPlaying()){
             mediaPlayer.release();
             mediaPlayer.pause();
@@ -99,7 +100,6 @@ public class GameActivity extends AppCompatActivity {
             public void onTick(long mil) {
                 tv1.setText("Seconds remaining: " + mil / 1000);
             }
-
             public void onFinish() {
                 tv1.setText("Seconds remaining: 0");
                 Ketthuc();
@@ -283,6 +283,19 @@ public class GameActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    private int getLevel( int tablesize){
+        switch (tablesize){
+            case 3:
+                return 1;
+            case 4:
+                return 2;
+            case 5:
+                return 3;
+
+                default: return 0;
+        }
     }
 
     private int getSizeItem(){

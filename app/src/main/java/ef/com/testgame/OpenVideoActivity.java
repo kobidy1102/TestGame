@@ -1,6 +1,7 @@
 package ef.com.testgame;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.media.MediaPlayer;
@@ -8,6 +9,8 @@ import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
@@ -15,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 public class OpenVideoActivity extends AppCompatActivity {
+    ImageView ivback;
 
     private VideoView videoView;
     private int position = 0;
@@ -25,6 +29,14 @@ public class OpenVideoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_openvideo);
+        ivback = (ImageView)findViewById(R.id.ivback);
+        ivback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(OpenVideoActivity.this, MainActivity.class);
+                OpenVideoActivity.this.startActivity(intent);
+            }
+        });
 
 
 
