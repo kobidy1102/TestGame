@@ -103,8 +103,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 public boolean onTouch(View view, MotionEvent motionEvent) {
                     if(listener!=null){
                       listener.onItemClick(tvValue,getAdapterPosition());
-
-
                     }
                     return false;
                 }
@@ -119,7 +117,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public interface ListAdapterListener{
         void onItemClick(TextView view, int positon);
     }
-
     public void setListChange(List<Integer> newList){
         this.list= newList;
         notifyDataSetChanged();

@@ -44,7 +44,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="100dp"
-            android:src="@drawable/volume" />
+            android:src="@drawable/ic_volume_up_black_24dp" />
     </LinearLayout>
 
     <RelativeLayout
@@ -126,6 +126,7 @@
         android:layout_height="70dp"
         android:background="@drawable/backgroud_number"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:textSize="18dp"
         android:text="Mix" />
 

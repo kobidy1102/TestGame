@@ -29,7 +29,6 @@ import java.util.List;
 
 public class GameActivity extends AppCompatActivity {
     private RecyclerView rcvTable;
-    private Dialog dialog;
     private int tablesize;
     private List<Integer> list = new ArrayList<>();
     private int positionEmpty;
@@ -56,7 +55,7 @@ public class GameActivity extends AppCompatActivity {
         Button mix = (Button)findViewById(R.id.start);
         Button back1 = (Button)findViewById(R.id.bacl);
         level = (TextView)findViewById(R.id.level);
-        level.setText("Level " + getLevel(tablesize));
+
         load = (ImageView)findViewById(R.id.loa);
         tvFakeAnimation= findViewById(R.id.game_activity_tv_fake_animation);
         llRoot= findViewById(R.id.game_activity_ll_root);
@@ -64,7 +63,8 @@ public class GameActivity extends AppCompatActivity {
         back1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent123 = new Intent(GameActivity.this, ChooseGameModeActivity.class);
+                GameActivity.this.startActivity(intent123);
                 mediaPlayer.stop();
             }
         });
@@ -78,7 +78,7 @@ public class GameActivity extends AppCompatActivity {
         }
         else {
             mediaPlayer.start();
-            load.setImageResource(R.drawable.volume);
+            load.setImageResource(R.drawable.ic_volume_up_black_24dp);
         }
         load.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +89,7 @@ public class GameActivity extends AppCompatActivity {
                 }
                 else {
                     mediaPlayer.start();
-                    load.setImageResource(R.drawable.volume);
+                    load.setImageResource(R.drawable.ic_volume_up_black_24dp);
                 }
             }
         });
@@ -121,7 +121,10 @@ public class GameActivity extends AppCompatActivity {
         Intent mIntent = getIntent();
         tablesize = mIntent.getIntExtra("TABLE_SIZE", 0);
 
+        level.setText("Level " + getLevel(tablesize));
+
         randomList();
+
         adapter = new ListAdapter(this,list, tablesize, new ListAdapter.ListAdapterListener() {
             @Override
             public void onItemClick(TextView view, int positon) {
@@ -181,7 +184,7 @@ public class GameActivity extends AppCompatActivity {
         moveCounter.setText(Integer.toString(Integer.parseInt((String) moveCounter.getText())+1));
         moveCounter.setTextColor(Color.BLACK);
         feedbackText.setText("Move OK");
-        final MediaPlayer mediaPlayer1= MediaPlayer.create(GameActivity.this,R.raw.dichuyen);
+        MediaPlayer mediaPlayer1= MediaPlayer.create(GameActivity.this,R.raw.dichuyen);
         mediaPlayer1.start();
         feedbackText.setTextColor(Color.GREEN);
     }
@@ -195,7 +198,7 @@ public class GameActivity extends AppCompatActivity {
                 Intent myIntent = new Intent(this, GameActivity.class);
                 myIntent.putExtra("TABLE_SIZE",tablesize+1);
                 startActivity(myIntent);
-                Toast.makeText(this, "End Game", Toast.LENGTH_SHORT).show();
+                mediaPlayer.stop();
             }
         }
     }
@@ -211,9 +214,9 @@ public class GameActivity extends AppCompatActivity {
         builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                onBackPressed();
+                Intent intento = new Intent(GameActivity.this,ChooseGameModeActivity.class);
+                GameActivity.this.startActivity(intento);
                 mediaPlayer.stop();
-
             }
         });
         builder.show();
@@ -228,23 +231,21 @@ public class GameActivity extends AppCompatActivity {
         int locationY= positionClick/tablesize;
         tvFakeAnimation.setVisibility(View.VISIBLE);
 
-         int leftMarginDefault= (llRoot.getWidth()-rcvTable.getWidth())/2+ (int)AppUtil.convertDpToPixel(4,GameActivity.this); //padding 2 + margin 2
+        int leftMarginDefault= (llRoot.getWidth()-rcvTable.getWidth())/2+ (int)AppUtil.convertDpToPixel(4,GameActivity.this); //padding 2 + margin 2
         int topMarginDefault= (int)AppUtil.convertDpToPixel(4,GameActivity.this); //padding 2 + margin 2
 
         final int leftMargin= leftMarginDefault+ (locationX* ((int)AppUtil.convertDpToPixel(getSizeItem()+4,GameActivity.this)));
 
         final int topMargin=  topMarginDefault+ (locationY* ((int)AppUtil.convertDpToPixel(getSizeItem()+4,GameActivity.this)));
-
-
         Log.e("check", "checksetHalfIcon");
         ValueAnimator widthAnimator = ValueAnimator.ofInt(0,(int)AppUtil.convertDpToPixel(getSizeItem()+4,GameActivity.this));
-        widthAnimator.setDuration(200);
+        widthAnimator.setDuration(500);
         widthAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 int animatedValue = (int) animation.getAnimatedValue();
                 RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams((int)AppUtil.convertDpToPixel(getSizeItem(),GameActivity.this), (int)AppUtil.convertDpToPixel(getSizeItem(),GameActivity.this));
-
+//truyền  vào witdth và height của view
                 if(derectionMove==MOVE_LEFT){
                     lp.setMargins(leftMargin - animatedValue, topMargin, 0, 0);
 
@@ -293,7 +294,12 @@ public class GameActivity extends AppCompatActivity {
                 return 2;
             case 5:
                 return 3;
-
+            case 6:
+                return 4;
+            case 7:
+                return 5;
+            case 8:
+                return 6;
                 default: return 0;
         }
     }
