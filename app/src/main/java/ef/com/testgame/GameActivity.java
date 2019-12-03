@@ -113,6 +113,7 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(View view) {
                 randomList();
                 adapter.setListChange(list);
+                tvFakeAnimation.setVisibility(View.VISIBLE);
             }
         });
 
@@ -153,25 +154,31 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void handleWhenClickItem(TextView view, int potision){
+        MediaPlayer mediaPlayer1= MediaPlayer.create(GameActivity.this,R.raw.dichuyen);
         if((positionEmpty+1)%tablesize !=1 && (potision==positionEmpty-1)){
             startAnimation(potision,MOVE_RIGHT);
             view.setBackgroundColor(Color.TRANSPARENT);
             view.setText("");
+            mediaPlayer1.start();
         }else if((positionEmpty+1)%tablesize !=0 && (potision==positionEmpty+1)){
             startAnimation(potision,MOVE_LEFT);
             view.setBackgroundColor(Color.TRANSPARENT);
             view.setText("");
+            mediaPlayer1.start();
         }else if( potision==positionEmpty+tablesize){
             startAnimation(potision,MOVE_BOTTOM);
             view.setBackgroundColor(Color.TRANSPARENT);
             view.setText("");
+            mediaPlayer1.start();
         }else if(potision==positionEmpty-tablesize){
             startAnimation(potision,MOVE_TOP);
             view.setBackgroundColor(Color.TRANSPARENT);
             view.setText("");
+            mediaPlayer1.start();
         }else{
             feedbackText.setText("Move Not Allowed");
             feedbackText.setTextColor(Color.RED);
+
         }
     }
 
@@ -184,8 +191,6 @@ public class GameActivity extends AppCompatActivity {
         moveCounter.setText(Integer.toString(Integer.parseInt((String) moveCounter.getText())+1));
         moveCounter.setTextColor(Color.BLACK);
         feedbackText.setText("Move OK");
-        MediaPlayer mediaPlayer1= MediaPlayer.create(GameActivity.this,R.raw.dichuyen);
-        mediaPlayer1.start();
         feedbackText.setTextColor(Color.GREEN);
     }
 
@@ -227,10 +232,10 @@ public class GameActivity extends AppCompatActivity {
     private void startAnimation(final int positionClick, final int derectionMove) {
         tvFakeAnimation.setText(String.valueOf(list.get(positionClick)));
         tvFakeAnimation.setBackground(AppUtil.getBackground(this, tablesize));
-        int locationX= positionClick% tablesize;
-        int locationY= positionClick/tablesize;
         tvFakeAnimation.setVisibility(View.VISIBLE);
 
+        int locationX= positionClick% tablesize;
+        int locationY= positionClick/tablesize;
         int leftMarginDefault= (llRoot.getWidth()-rcvTable.getWidth())/2+ (int)AppUtil.convertDpToPixel(4,GameActivity.this); //padding 2 + margin 2
         int topMarginDefault= (int)AppUtil.convertDpToPixel(4,GameActivity.this); //padding 2 + margin 2
 
