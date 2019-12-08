@@ -70,29 +70,37 @@ public class GameActivity extends AppCompatActivity {
         });
 
         //loa
-        mediaPlayer= MediaPlayer.create(GameActivity.this,R.raw.nhacnen1);
-        if(mediaPlayer.isPlaying()){
-            mediaPlayer.release();
-            mediaPlayer.pause();
-            load.setImageResource(R.drawable.ic_volume_off_black_24dp);
-        }
-        else {
-            mediaPlayer.start();
-            load.setImageResource(R.drawable.ic_volume_up_black_24dp);
-        }
-        load.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mediaPlayer.isPlaying()){
+        mediaPlayer = MediaPlayer.create(this, R.raw.nhacnen3);
+        {
+            {
+                if (mediaPlayer.isPlaying()) {
+                    mediaPlayer.release();
                     mediaPlayer.pause();
                     load.setImageResource(R.drawable.ic_volume_off_black_24dp);
-                }
-                else {
+                } else {
                     mediaPlayer.start();
                     load.setImageResource(R.drawable.ic_volume_up_black_24dp);
                 }
+                load.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mediaPlayer.isPlaying()) {
+                            mediaPlayer.pause();
+                            load.setImageResource(R.drawable.ic_volume_off_black_24dp);
+                        } else {
+                            mediaPlayer.start();
+                            load.setImageResource(R.drawable.ic_volume_up_black_24dp);
+                        }
+                    }
+                });
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        mediaPlayer.start();
+                    }
+                });
             }
-        });
+        }
 
         // Thời gian
         final TextView tv1 = (TextView) findViewById(R.id.tv);
@@ -153,25 +161,27 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-    private void handleWhenClickItem(TextView view, int potision){
+    //Xử lí click item
+    private void handleWhenClickItem(TextView view, int position){
         MediaPlayer mediaPlayer1= MediaPlayer.create(GameActivity.this,R.raw.dichuyen);
-        if((positionEmpty+1)%tablesize !=1 && (potision==positionEmpty-1)){
-            startAnimation(potision,MOVE_RIGHT);
+        //positionEmpty vitritrong %chialayphandu
+        if((positionEmpty+1)%tablesize !=1 && (position==positionEmpty-1)){
+            startAnimation(position,MOVE_RIGHT);
             view.setBackgroundColor(Color.TRANSPARENT);
             view.setText("");
             mediaPlayer1.start();
-        }else if((positionEmpty+1)%tablesize !=0 && (potision==positionEmpty+1)){
-            startAnimation(potision,MOVE_LEFT);
+        }else if((positionEmpty+1)%tablesize !=0 && (position==positionEmpty+1)){
+            startAnimation(position,MOVE_LEFT);
             view.setBackgroundColor(Color.TRANSPARENT);
             view.setText("");
             mediaPlayer1.start();
-        }else if( potision==positionEmpty+tablesize){
-            startAnimation(potision,MOVE_BOTTOM);
+        }else if( position==positionEmpty+tablesize){
+            startAnimation(position,MOVE_BOTTOM);
             view.setBackgroundColor(Color.TRANSPARENT);
             view.setText("");
             mediaPlayer1.start();
-        }else if(potision==positionEmpty-tablesize){
-            startAnimation(potision,MOVE_TOP);
+        }else if(position==positionEmpty-tablesize){
+            startAnimation(position,MOVE_TOP);
             view.setBackgroundColor(Color.TRANSPARENT);
             view.setText("");
             mediaPlayer1.start();
@@ -182,7 +192,7 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-
+//Check di chuyển hướng
     private void moveSuccess(int potision){
         list.set(positionEmpty,list.get(potision));
         list.set(potision,0);
@@ -194,6 +204,7 @@ public class GameActivity extends AppCompatActivity {
         feedbackText.setTextColor(Color.GREEN);
     }
 
+    //check win
     private void checkEndGame(){
         int size= tablesize * tablesize;
         for(int i=0; i<size-1; i++){
@@ -229,6 +240,7 @@ public class GameActivity extends AppCompatActivity {
 
 
 
+
     private void startAnimation(final int positionClick, final int derectionMove) {
         tvFakeAnimation.setText(String.valueOf(list.get(positionClick)));
         tvFakeAnimation.setBackground(AppUtil.getBackground(this, tablesize));
@@ -238,9 +250,7 @@ public class GameActivity extends AppCompatActivity {
         int locationY= positionClick/tablesize;
         int leftMarginDefault= (llRoot.getWidth()-rcvTable.getWidth())/2+ (int)AppUtil.convertDpToPixel(4,GameActivity.this); //padding 2 + margin 2
         int topMarginDefault= (int)AppUtil.convertDpToPixel(4,GameActivity.this); //padding 2 + margin 2
-
         final int leftMargin= leftMarginDefault+ (locationX* ((int)AppUtil.convertDpToPixel(getSizeItem()+4,GameActivity.this)));
-
         final int topMargin=  topMarginDefault+ (locationY* ((int)AppUtil.convertDpToPixel(getSizeItem()+4,GameActivity.this)));
         Log.e("check", "checksetHalfIcon");
         ValueAnimator widthAnimator = ValueAnimator.ofInt(0,(int)AppUtil.convertDpToPixel(getSizeItem()+4,GameActivity.this));
