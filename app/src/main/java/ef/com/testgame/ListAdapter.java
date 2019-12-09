@@ -87,8 +87,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         private ViewHolder(View itemView) {
             super(itemView);
             tvValue = itemView.findViewById(R.id.item_value_tv_value);
-
-
             tvValue.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {

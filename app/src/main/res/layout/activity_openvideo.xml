@@ -6,17 +6,17 @@
     android:orientation="vertical"
     tools:context=".OpenVideoActivity">
 
-<ImageView
-    android:id="@+id/ivback"
-    android:layout_width="50dp"
-    android:layout_height="50dp"
-    android:layout_gravity="end"
-    android:background="@drawable/close"/>
+            <ImageView
+                android:id="@+id/ivback"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:background="@drawable/close"/>
             <TextView
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cách chơi: Chạm tay vào các vùng chọn để di chuyển trái, phải, lên, xuống. Yêu cầu người chơi phải sắp xếp các con số theo thứ tự từ nhỏ đến lớn, từ trái qua phải, từ trên xuống dưới, khi người chơi hoàn thành được chuỗi số trong khoảng thời gian cho phéo thì đông nghĩa với chiến thắng."
+                android:text="Cách chơi: Chạm tay vào ô số để di chuyển trái, phải, lên, xuống(Chỉ cho phép di chuyển sang ô trống). Yêu cầu người chơi phải sắp xếp các con số theo thứ tự từ nhỏ đến lớn, từ trái qua phải, từ trên xuống dưới, khi người chơi hoàn thành được chuỗi số trong khoảng thời gian cho phéo thì đông nghĩa với chiến thắng."
                 android:textStyle="bold"
                 android:textSize="20dp"/>
             <TextView
@@ -28,10 +28,10 @@
                 android:textStyle="bold"/>
 
             <VideoView
+                android:id="@+id/videoView"
+                android:layout_marginTop="10dp"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:id="@+id/videoView"
                 android:layout_gravity="center" />
-
         </LinearLayout>
 

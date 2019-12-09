@@ -43,7 +43,7 @@
             android:id="@+id/loa"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="150dp"
             android:src="@drawable/ic_volume_up_black_24dp" />
     </LinearLayout>
 
@@ -129,6 +129,11 @@
         android:layout_marginTop="20dp"
         android:textSize="18dp"
         android:text="Mix" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/gamevui"/>
 
 
 
